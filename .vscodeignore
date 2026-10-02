@@ -1,0 +1,22 @@
+# Entwicklungsdateien
+.vscode/**
+.github/**
+src/**
+test/**
+
+# Build-Artefakte, die nicht ins Paket gehören
+out/test/**
+
+# Abhängigkeiten
+node_modules/**
+
+# Quellcode und Konfiguration
+**/*.ts
+**/*.map
+tsconfig.json
+.gitignore
+*.vsix
+
+# Betriebssystem-Kram
+.DS_Store
+Thumbs.db

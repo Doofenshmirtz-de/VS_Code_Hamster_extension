@@ -1,0 +1,104 @@
+{
+  "name": "hamster-error-sound",
+  "displayName": "Hamster Error Sound",
+  "description": "Spielt einen Hamster-Sound ab, wenn ein Terminal-Befehl oder ein VS Code Task mit einem Fehler endet.",
+  "version": "0.1.0",
+  "publisher": "jarnokibies",
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.93.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "keywords": [
+    "hamster",
+    "sound",
+    "error",
+    "meme",
+    "fun"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Doofenshmirtz-de/VS_Code_Hamster_extension.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Doofenshmirtz-de/VS_Code_Hamster_extension/issues"
+  },
+  "main": "./out/extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "hamster.playSound",
+        "title": "Hamster: Sound jetzt abspielen"
+      }
+    ],
+    "configuration": {
+      "title": "Hamster Error Sound",
+      "properties": {
+        "hamster.nervousness": {
+          "type": "string",
+          "enum": [
+            "off",
+            "mild",
+            "normal",
+            "chaos"
+          ],
+          "enumDescriptions": [
+            "Aus. Es passiert gar nichts.",
+            "Nur VS Code Tasks. Cooldown 10s, Abbruch (Ctrl+C) wird ignoriert.",
+            "Terminal-Befehle und Tasks. Cooldown 5s, Abbruch (Ctrl+C) wird ignoriert.",
+            "Alles. Kein Cooldown, kein Ignore, Sound pro fehlgeschlagenem Prozess. Reiner Chaos-Modus."
+          ],
+          "default": "normal",
+          "scope": "window",
+          "markdownDescription": "Wie nervig soll die Extension sein? Steuert Quellen, Cooldown und das Verhalten bei parallelen Fehlern."
+        },
+        "hamster.cooldownMs": {
+          "type": "number",
+          "default": 5000,
+          "minimum": 0,
+          "scope": "window",
+          "markdownDescription": "Mindestabstand zwischen zwei Sounds in Millisekunden. Wird von der Nervigkeits-Stufe übersteuert, wenn diese einen eigenen Wert vorgibt (`off`/`mild`/`normal`/`chaos`)."
+        },
+        "hamster.volume": {
+          "type": "number",
+          "default": 1,
+          "minimum": 0,
+          "maximum": 1,
+          "scope": "window",
+          "markdownDescription": "Lautstärke von 0 bis 1. Wirkt vollständig auf macOS und Linux. Unter Windows kann nur An/Aus gesteuert werden."
+        },
+        "hamster.ignoreExitCodes": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          },
+          "default": [
+            130
+          ],
+          "scope": "window",
+          "markdownDescription": "Exit-Codes, die keinen Sound auslösen. Standard ist `130` (Prozess per Ctrl+C abgebrochen)."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "test": "npm run compile && mocha \"out/test/**/*.test.js\"",
+    "package": "npx @vscode/vsce package"
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.10",
+    "@types/node": "^20.14.0",
+    "@types/vscode": "^1.93.0",
+    "@vscode/vsce": "^3.2.1",
+    "mocha": "^10.8.2",
+    "typescript": "^5.7.2"
+  }
+}

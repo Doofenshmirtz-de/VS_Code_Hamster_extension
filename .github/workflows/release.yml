@@ -1,0 +1,29 @@
+name: Release VSIX
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - run: npm ci
+      - run: npm test
+      - run: npx @vscode/vsce package
+      - run: mv hamster-error-sound-*.vsix hamster-error-sound.vsix
+
+      - name: Attach VSIX to release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: 'hamster-error-sound.vsix'
