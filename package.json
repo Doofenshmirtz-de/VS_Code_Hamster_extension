@@ -2,7 +2,7 @@
   "name": "hamster-error-sound",
   "displayName": "Hamster Error Sound",
   "description": "Spielt einen Hamster-Sound ab, wenn ein Terminal-Befehl oder ein VS Code Task mit einem Fehler endet.",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "publisher": "jarnokibies",
   "license": "MIT",
   "engines": {
@@ -34,6 +34,10 @@
       {
         "command": "hamster.playSound",
         "title": "Hamster: Sound jetzt abspielen"
+      },
+      {
+        "command": "hamster.showLog",
+        "title": "Hamster: Log anzeigen"
       }
     ],
     "configuration": {

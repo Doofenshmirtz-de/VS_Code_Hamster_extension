@@ -4,6 +4,7 @@ export interface Logger {
   info(message: string): void;
   warn(message: string): void;
   error(message: string): void;
+  show(): void;
 }
 
 export interface LoggerWithDisposable extends Logger, vscode.Disposable {}
@@ -16,6 +17,7 @@ export function createLogger(): LoggerWithDisposable {
     info: (message) => stamp('info', message),
     warn: (message) => stamp('warn', message),
     error: (message) => stamp('error', message),
+    show: () => channel.show(),
     dispose: () => channel.dispose(),
   };
 }

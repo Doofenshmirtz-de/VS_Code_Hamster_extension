@@ -2,6 +2,10 @@
 
 Alle nennenswerten Änderungen an dieser Extension.
 
+## 0.1.1
+
+- Neuer Befehl „Hamster: Log anzeigen" öffnet den Output-Kanal direkt.
+
 ## 0.1.0
 
 - Erste Version.
